@@ -2,6 +2,7 @@
   "name": "Behaviour Driven Development – very testing × so wow × much codes",
   "sections": [
     {"section":"intro"},
+    {"section":"wat"},
     {"section":"soorten"},
     {"section":"implementatie"}
   ]
