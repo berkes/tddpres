@@ -7,7 +7,6 @@
 * Vertrouwen en Regressie
 * Onderhoudbaarheid
 * Regressie
-
 * **niet** minder bugs
 
 !SLIDE bullets incremental
