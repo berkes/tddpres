@@ -10,7 +10,6 @@
 # Over de presentatie #
 * Staat op [berk.es/tdd_pres](http://berk.es/tdd_pres)
 * Github: [github.com/berkes/tdd_pres](http://github.com/berkes/tdd_pres)
-* Eind van de presentie (!) heeft een sheet met alle links
 
 !SLIDE bullets incremental
 # Over mij #
@@ -26,3 +25,8 @@
 * Testen we steeds meer.
 * ontwikkelen we in Ruby, Rails, PHP, Wordpress.
 
+!SLIDE bullets incremental
+# Meer info
+* http://pragprog.com/book/hwcuc/the-cucumber-book
+* http://behat.org/
+* http://phpunit.de/
