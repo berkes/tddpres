@@ -1,0 +1,58 @@
+@import url(http://fonts.googleapis.com/css?family=Sorts+Mill+Goudy:400,400italic|Arvo:400,400italic,700);
+
+#preso, .slide, .content {
+  background-color: black;
+}
+.content {
+  color: white;
+  font-family: 'Arvo', serif;
+}
+.content > p {
+  text-align: left;
+}
+.content.text > p {
+  text-align: justify;
+}
+.content > pre {
+  font-size: 2em;
+}
+.content.title {
+  font-size:2em;
+}
+.content.fullpage img {
+  width: auto;
+  height: 676px;
+}
+.content.small {
+  font-size: 0.5em;
+}
+h1, h2 {
+  color: white;
+  font-family: 'Sorts Mill Goudy', serif;
+}
+#footer {
+  border-top: 1px solid #3DAAE0;
+  background: #000 url(logo.png) no-repeat right center;
+}
+em {
+  background-color: #698B69;
+  border-radius: 2px;
+  font-style:normal;
+}
+a {
+  color: #698B69;
+}
+code {
+  background-color: #222;
+  border-radius: 2px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+.code code {
+  background-color: transparent;
+  border: none;
+}
+.center img {
+  width: auto;
+  min-height: 600px;
+}

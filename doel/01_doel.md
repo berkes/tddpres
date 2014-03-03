@@ -1,4 +1,5 @@
 !SLIDE center
+#WHY
 ![why](why.gif)
 
 !SLIDE bullets incremental

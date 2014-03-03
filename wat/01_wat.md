@@ -8,16 +8,15 @@
 
 !SLIDE
 # Three Laws
-> 1.  You are not allowed to write any production code unless it is to make a failing unit test pass.
+
+> You are not allowed to write any production code unless it is to make a failing unit test pass.
+
 !SLIDE
 # Three Laws
-> 2.  You are not allowed to write any more of a unit test than is sufficient to fail; and compilation failures are failures.
+> You are not allowed to write any more of a unit test than is sufficient to fail; and compilation failures are failures.
 !SLIDE
 # Three Laws
-> 3.  You are not allowed to write any more production code than is sufficient to pass the one failing unit test.
-!SLIDE
-# Three Laws
-http://butunclebob.com/ArticleS.UncleBob.TheThreeRulesOfTdd
+> You are not allowed to write any more production code than is sufficient to pass the one failing unit test.
 
 !SLIDE
 # Terminologie
@@ -30,20 +29,22 @@ http://butunclebob.com/ArticleS.UncleBob.TheThreeRulesOfTdd
 > Its core idea is to replace confusing and developer-centric terminology (tests, suites, assertions etc) with ubiquitous language that all participating stakeholders (including non-technical staff, and, possibly, clients) can understand.
 
 !SLIDE code
-Feature: Search
 
-  So that I can find campings
-  As a user
-  I want to search and filter campings
+    @@@ Cucumber
+    Feature: Search
 
-  @javascript
-  Scenario: Search in title
-    Given 1 Campings
-    And a camping named "Bij Ons"
-    When I visit the map page
-    And I fill in search with "ons"
-    And I click "Search"
-    Then I should see only the camping "Bij Ons"
+      So that I can find campings
+      As a user
+      I want to search and filter campings
+
+      @javascript
+      Scenario: Search in title
+        Given 1 Campings
+        And a camping named "Bij Ons"
+        When I visit the map page
+        And I fill in search with "ons"
+        And I click "Search"
+        Then I should see only the camping "Bij Ons"
 
 !SLIDE
 # Terminologie
@@ -52,16 +53,17 @@ Feature: Search
 * Uitgekleed
 
 !SLIDE code
-  describe CampingsController do
-    describe "GET show" do
-      before do
-        @camping = FactoryGirl.create(:camping)
-        get :show, :id => @camping.id
+    @@@ Ruby
+    describe CampingsController do
+      describe "GET show" do
+        before do
+          @camping = FactoryGirl.create(:camping)
+          get :show, :id => @camping.id
+        end
+        it { should assign_to(:camping) }
+        it { should assign_to(:title).with(@camping.name) }
       end
-      it { should assign_to(:camping) }
-      it { should assign_to(:title).with(@camping.name) }
     end
-  end
 
 !SLIDE
 # Terminologie
@@ -70,22 +72,23 @@ Feature: Search
 * Beschrijft alle models, en andere "Dingen"
 
 !SLIDE code
-   describe "#website" do
-    it { should allow_mass_assignment_of(:website) }
-    it { should allow_value(nil).for(:website) }
+    @@@ Ruby
+    describe "#website" do
+      it { should allow_mass_assignment_of(:website) }
+      it { should allow_value(nil).for(:website) }
 
-    it 'should ensure website has a length of at most 255' do
-      camping = Camping.new(:website => "x" * 256)
-      camping.valid?
-      camping.errors[:website].first.should match /is too long/
+      it 'should ensure website has a length of at most 255' do
+        camping = Camping.new(:website => "x" * 256)
+        camping.valid?
+        camping.errors[:website].first.should match /is too long/
+      end
+      it 'should prepend http to urls without it' do
+        camping = Camping.new(:website => "example.com")
+        camping.valid?
+        camping.website.should eq "http://example.com"
+      end
+      %w{example.com http://example.com https://example.com}.each do |valid_value|
+        it { should allow_value(valid_value).for(:website) }
+      end
     end
-    it 'should prepend http to urls without it' do
-      camping = Camping.new(:website => "example.com")
-      camping.valid?
-      camping.website.should eq "http://example.com"
-    end
-    %w{example.com http://example.com https://example.com}.each do |valid_value|
-      it { should allow_value(valid_value).for(:website) }
-    end
-  end
 
