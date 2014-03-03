@@ -1,5 +1,6 @@
 !SLIDE bullets
+* Why?
 * Wat?
-* Doel van testen
 * Soorten tests
 * Praktisch
+* Demo
