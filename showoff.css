@@ -55,4 +55,5 @@ code {
 .center img {
   width: auto;
   min-height: 600px;
+  max-height: 700px;
 }
