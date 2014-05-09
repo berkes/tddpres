@@ -14,6 +14,7 @@
 # Integration
 * "It must be a rooster"
 * "It must have an eye"
+* "It must be 30mm wide, 90mm deep and 80mm high"
 
 !SLIDE center
 ![integration](duplo.jpg)
@@ -23,6 +24,7 @@
 * "It must be green"
 * "It must have four knobs"
 * "It must have one rounded edge"
+* "It must be 30mm wide, 45mm deep and 20mm high"
 
 !SLIDE center
 ![unit](duplo_unit_B.jpg)
@@ -34,6 +36,13 @@
 
 !SLIDE center
 ![different unit](duplo_integration_swap_units.jpg)
+
+!SLIDE bullets incremental
+# Omarm verandering
+* Units kunnen herschreven worden.
+* Maar aan de buitenkant blijft het hetzelfde werken. 
+* Dat weet je "zeker", als je integrationtest groen is.
+* (Voor alles wat je met die integrationtests test)
 
 !SLIDE bullets incremental
 # TDD: Test Driven development
