@@ -17,7 +17,7 @@
 * Werkt alles uit met tests
 * Begon met rspec
 * Daarna Cucumber
-* Is met de terminal getrouwd
+* Heeft getracht in Drupal TDD te ontwikkelen
 
 !SLIDE bullets incremental
 # Over Savvii #
