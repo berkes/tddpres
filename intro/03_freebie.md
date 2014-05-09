@@ -1,4 +1,5 @@
 !SLIDE center
+# Wedstrijdje
 ![Real-World Solutions for Developing High-Quality PHP Frameworks and
 Applications](cover.jpg)
 
@@ -6,22 +7,25 @@ Applications](cover.jpg)
 # Wedstrijdje #
 
 * Begin met testen in je (nieuw te bouwen) plugin of thema.
-* De eerste tweet of met link naar commit (op bijv. github) of link naar sourcecode met tests wint dit boek. 
-* Een van onderstaande tests of variatie daarvan:
-* (uiteraard moeten ze **groen** zijn en te draaien door bijv. mij)
+* Met onderstaande tests of variatie daarvan, die **passen**.
+* Tweet naar **@savviihq**
+* Questions and help **@berkes**
 
 !SLIDE code
 
     @@@ PHP
     class SanityTest extends PHPUnit_Framework_TestCase {
-        public function YayMyTestsAreWiredUp() {
-            $this->assertContains('W00t. Tests are running!', $this->page('/myplugin', 'GET'));
-        }
+      public function YayMyTestsAreWiredUp() {
+        $this->assertContains(
+          'W00t. Tests are running!', 
+          $this->page('/myplugin')
+        );
+      }
     }
 
 !SLIDE code
 
-   @@@ Cucumber
+    @@@ Cucumber
     Feature: Sanity
 
       As a visitor
