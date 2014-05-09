@@ -24,27 +24,6 @@
 * Test het gedrag van je site. Aan de buitenkant
 * Test veranderingen aan de buitenkant bij interactie.
 
-!SLIDE code
-    @@@ PHP
-    class CommentOnStory extends PHPUnit_Framework_TestCase {
-      public function CommentIsPublished() {
-        // Given: a story
-        $story = $this->create_a_story();
-
-        // When: we are on the story page
-        $this->visit($story->url);
-
-        // And: we place a comment
-        $this->fill_in("comment_form", array("body" => "I am comment");
-        $this->click_button("Place Comment");
-
-        // Then we should see it on the page
-        $this->assertContains(
-          'I am comment', 
-          $this->page('/myplugin')->find("#comments .body")->content()
-        );
-      }
-    }
 
 !SLIDE bullets incremental
 # Units
@@ -63,6 +42,48 @@
 
 !SLIDE center
 ![different unit](duplo_integration_swap_units.jpg)
+
+!SLIDE bullets incremental
+# Voorbeelden
+## Pseudocode
+
+!SLIDE code
+# Integration
+    @@@ PHP
+    class PublishComment extends PHPUnit_Framework_TestCase {
+      // Test that a comment gets published immediately
+      public function CommentIsPublished() {
+        // Given: a story
+        $story = $this->create_a_story();
+
+        // When: we are on the story page
+        $page = $this->visit($story->url);
+
+        // And: we place a comment
+        $page->fill_in("comment_form", array("body" => "I am comment");
+        $page->click_button("Place Comment");
+
+        // Then we should see it on the page
+        $page = $this->visit($story->url);
+        $this->assertContains(
+          'I am comment', 
+          $page->find("#comments .body")->content()
+        );
+      }
+    }
+
+!SLIDE code
+# Unit
+    @@@ PHP
+    class CommentPublisher extends PHPUnit_Framework_TestCase {
+      // It forces the published state on a comment
+      public function forcesPublishdOnComment() {
+        $comment = wp_new_comment();
+        $this->assert_equal($comment->published, false);
+        new CommentPublisher($comment);
+        $this->assert_equal($comment->published, true);
+      }
+    }
 
 !SLIDE bullets incremental
 # Omarm verandering
