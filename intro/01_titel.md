@@ -1,4 +1,4 @@
-!SLIDE
+!SLIDE center
 
 # Behaviour Driven Development
-WordCamp Netherlands 2014
+## WordCamp Netherlands 2014
