@@ -32,6 +32,7 @@ h1, h2 {
 }
 #footer {
   border-top: 1px solid #3DAAE0;
+  background: #000 url(logo.png) no-repeat right center;
 }
 em {
   background-color: #698B69;
