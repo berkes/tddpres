@@ -14,6 +14,8 @@
 # Integration
 * "It must be a rooster"
 * "It must have an eye"
+
+!SLIDE center
 ![integration](duplo.jpg)
 
 !SLIDE bullets incremental
