@@ -23,10 +23,13 @@
 # Over Savvii #
 
 * Testen we steeds meer.
-* ontwikkelen we in Ruby, Rails, PHP, Wordpress.
+* ontwikkelen we in Ruby, Rails, PHP, WordPress.
 
 !SLIDE bullets incremental
 # Meer info
 * http://pragprog.com/book/hwcuc/the-cucumber-book
 * http://behat.org/
 * http://phpunit.de/
+* http://codex.wordpress.org/Test_Driving_WordPress
+* http://make.wordpress.org/core/handbook/automated-testing/
+* http://wordpress.stackexchange.com/
