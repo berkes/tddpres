@@ -12,22 +12,26 @@
 
 !SLIDE bullets incremental
 # Integration
-## "It must be a rooster with an eye"
+* "It must be a rooster"
+* "It must have an eye"
 ![integration](duplo.jpg)
 
 !SLIDE bullets incremental
 # Units
 * "It must be green"
-* "has four knobs"
-* "has one rounded edge"
+* "It must have four knobs"
+* "It must have one rounded edge"
+
+!SLIDE center
 ![unit](duplo_unit_B.jpg)
 
 !SLIDE bullets incremental
 # Units and Integration
 * Units kunnen veranderen
 * Behaviour blijft hetzelfde
-![different unit](duplo_unit_B_half.jpg)
-![integration](duplo.jpg)
+
+!SLIDE center
+![different unit](duplo_integration_swap_units.jpg)
 
 !SLIDE bullets incremental
 # TDD: Test Driven development
