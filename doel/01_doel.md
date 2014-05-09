@@ -25,7 +25,7 @@
 !SLIDE
 # Vertrouwen
 * Vang regressies af
-* Groen is Gaaaan.
+* Groen is Gaan. Just :shipit:
 
 !SLIDE
 # Onderhoudbaarheid
