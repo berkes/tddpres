@@ -8,7 +8,7 @@
 
 !SLIDE bullets incremental
 # Over de presentatie #
-* Staat op [berk.es/tdd_pres](http://berk.es/tdd_pres)
+* Staat op [www.savvii.nl/tdd](http://www.savvii.nl/tdd)
 * Github: [github.com/berkes/tdd_pres](http://github.com/berkes/tdd_pres)
 
 !SLIDE bullets incremental
