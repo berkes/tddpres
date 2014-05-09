@@ -7,6 +7,3 @@
 
 !SLIDE
 # demo
-
-!SLIDE
-http://www.savvii.nl/tdd
