@@ -30,6 +30,5 @@
 * http://pragprog.com/book/hwcuc/the-cucumber-book
 * http://behat.org/
 * http://phpunit.de/
-* http://codex.wordpress.org/Test_Driving_WordPress
 * http://make.wordpress.org/core/handbook/automated-testing/
 * http://wordpress.stackexchange.com/
