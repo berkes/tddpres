@@ -2,6 +2,14 @@
 ![Real-World Solutions for Developing High-Quality PHP Frameworks and
 Applications](cover.jpg)
 
+!SLIDE bullets incremental
+# Wedstrijdje #
+
+* Begin met testen in je (nieuw te bouwen) plugin of thema.
+* De eerste tweet of met link naar commit (op bijv. github) of link naar sourcecode met tests wint dit boek. 
+* Een van onderstaande tests of variatie daarvan:
+* (uiteraard moeten ze **groen** zijn en te draaien door bijv. mij)
+
 !SLIDE code
 
     @@@ PHP
@@ -12,6 +20,7 @@ Applications](cover.jpg)
     }
 
 !SLIDE code
+
    @@@ Cucumber
     Feature: Sanity
 
