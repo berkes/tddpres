@@ -20,6 +20,33 @@
 ![integration](duplo.jpg)
 
 !SLIDE bullets incremental
+# Integration
+* Test het gedrag van je site. Aan de buitenkant
+* Test veranderingen aan de buitenkant bij interactie.
+
+!SLIDE code
+    @@@ PHP
+    class CommentOnStory extends PHPUnit_Framework_TestCase {
+      public function CommentIsPublished() {
+        // Given: a story
+        $story = $this->create_a_story();
+
+        // When: we are on the story page
+        $this->visit($story->url);
+
+        // And: we place a comment
+        $this->fill_in("comment_form", array("body" => "I am comment");
+        $this->click_button("Place Comment");
+
+        // Then we should see it on the page
+        $this->assertContains(
+          'I am comment', 
+          $this->page('/myplugin')->find("#comments .body")->content()
+        );
+      }
+    }
+
+!SLIDE bullets incremental
 # Units
 * "It must be green"
 * "It must have four knobs"
