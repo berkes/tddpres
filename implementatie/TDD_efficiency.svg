@@ -14,7 +14,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="Nieuw document 1">
+   sodipodi:docname="TDD_efficiency.svg"
+   inkscape:export-filename="/home/ber/Documenten/TDD_pres/tddpres/implementatie/TDD_efficiency.png"
+   inkscape:export-xdpi="72"
+   inkscape:export-ydpi="72">
   <defs
      id="defs4">
     <marker
@@ -36,9 +39,9 @@
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.90644531"
+     inkscape:zoom="2.3015213"
      inkscape:cx="375"
      inkscape:cy="299.3579"
      inkscape:document-units="px"
@@ -46,7 +49,7 @@
      showgrid="false"
      width="800px"
      inkscape:window-width="1022"
-     inkscape:window-height="822"
+     inkscape:window-height="809"
      inkscape:window-x="119"
      inkscape:window-y="63"
      inkscape:window-maximized="0" />
