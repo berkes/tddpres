@@ -6,9 +6,9 @@
 # Terminologie
 * Integration
 * Units
-* The Three laws of TDD
 * TDD
 * BDD
+* The Three laws of TDD
 
 !SLIDE bullets incremental
 # Integration
