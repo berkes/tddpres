@@ -3,12 +3,11 @@
 
 * Bèr Kessels
 * @berkes, github.com/berkes
-* Ruby Developer bij Savvii
-* Savvii - Managed Wordpress Hosting
+* Ruby Developer bij Savvii (tot september)
 
 !SLIDE bullets incremental
 # Over de presentatie #
-* Staat op [www.savvii.nl/tdd](http://www.savvii.nl/tdd)
+* Staat op [www.savvii.nl/tdd](http://berk.es/tddpres)
 * Github: [github.com/berkes/tdd_pres](http://github.com/berkes/tdd_pres)
 
 !SLIDE bullets incremental
@@ -17,18 +16,4 @@
 * Werkt alles uit met tests
 * Begon met rspec
 * Daarna Cucumber
-* Heeft getracht in Drupal TDD te ontwikkelen
-
-!SLIDE bullets incremental
-# Over Savvii #
-
-* Testen we steeds meer.
-* ontwikkelen we in Ruby, Rails, PHP, WordPress.
-
-!SLIDE bullets incremental
-# Meer info
-* http://pragprog.com/book/hwcuc/the-cucumber-book
-* http://behat.org/
-* http://phpunit.de/
-* http://make.wordpress.org/core/handbook/automated-testing/
-* http://wordpress.stackexchange.com/
+* nu Minitest
