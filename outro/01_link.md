@@ -1,4 +1,4 @@
 !SLIDE
 
-http://www.savvii.nl/tdd
+http://berk.es/tddpres
 
