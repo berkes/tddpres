@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>Behaviour Driven Development – very testing × so wow × much codes</title>
+  <title>Behaviour Driven Development</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
 
@@ -35,9 +35,7 @@
 
   
     
-      <script type="text/javascript" src=".//js/sh_lang/sh_cucumber.min.js"></script>
-    
-      <script type="text/javascript" src=".//js/sh_lang/sh_ruby.min.js"></script>
+      <script type="text/javascript" src=".//js/sh_lang/sh_php.min.js"></script>
     
   
 
@@ -98,24 +96,23 @@
 </div>
 
 <div id="slides" class="offscreen" style="display:none;">
-<div id="intro/01_titel" class="slide " data-transition="none"><div class="content " ref="intro/01_titel">
+<div id="intro/01_titel" class="slide center" data-transition="none"><div class="content center" ref="intro/01_titel">
 <h1>Behaviour Driven Development</h1>
 
-<p>Dinner with Drupal, Enschede 04 maart 2014</p></div>
+<h2>Nijmegen Developer Meetup</h2></div>
 </div><div id="intro/02_over" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="intro/02_over/1">
 <h1>Over</h1>
 
 <ul>
 <li>B&#xE8;r Kessels</li>
 <li>@berkes, github.com/berkes</li>
-<li>Ruby Developer bij Savvii</li>
-<li>Savvii - Managed Wordpress Hosting</li>
+<li>Ruby Developer bij Savvii (tot september)</li>
 </ul></div>
 </div><div id="intro/02_over" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="intro/02_over/2">
 <h1>Over de presentatie</h1>
 
 <ul>
-<li>Staat op <a href="http://berk.es/tdd_pres">berk.es/tdd_pres</a>
+<li>Staat op <a href="http://berk.es/tddpres">www.savvii.nl/tdd</a>
 </li>
 <li>Github: <a href="http://github.com/berkes/tdd_pres">github.com/berkes/tdd_pres</a>
 </li>
@@ -127,29 +124,13 @@
 <li>Werkt alles uit met tests</li>
 <li>Begon met rspec</li>
 <li>Daarna Cucumber</li>
-<li>Is met de terminal getrouwd</li>
+<li>nu Minitest</li>
 </ul></div>
-</div><div id="intro/02_over" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="intro/02_over/4">
-<h1>Over Savvii</h1>
-
+</div><div id="intro/04_inhoud" class="slide bullets" data-transition="none"><div class="content bullets" ref="intro/04_inhoud">
 <ul>
-<li>Testen we steeds meer.</li>
-<li>ontwikkelen we in Ruby, Rails, PHP, Wordpress.</li>
-</ul></div>
-</div><div id="intro/02_over" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="intro/02_over/5">
-<h1>Meer info</h1>
-
-<ul>
-<li>http://pragprog.com/book/hwcuc/the-cucumber-book</li>
-<li>http://behat.org/</li>
-<li>http://phpunit.de/</li>
-</ul></div>
-</div><div id="intro/03_inhoud" class="slide bullets" data-transition="none"><div class="content bullets" ref="intro/03_inhoud">
-<ul>
-<li>Why?</li>
-<li>Wat?</li>
-<li>Soorten tests</li>
-<li>Praktisch</li>
+<li>Why? (Waarom zouden we testen?)</li>
+<li>Wat? (Wat voor soort tests zijn er?)</li>
+<li>Praktisch (Hoe begin je met testen? Doe je dat <em>&#xFC;berhaupt</em>?)</li>
 <li>Demo</li>
 </ul></div>
 </div><div id="doel/01_doel" class="slide center" data-transition="none"><div class="content center" ref="doel/01_doel/1">
@@ -170,177 +151,222 @@
 <h1>Beter design</h1>
 
 <ul>
-<li>Unit tests</li>
-<li>Testability</li>
-<li>SOLID (Single Responsibility, Open-closed, Liskov substitution,
-Interface Segregation, Dependency inversion)</li>
+<li>Tests maken problemen in ontwerp zichtbaar</li>
 <li>Endless Refactoring</li>
 </ul></div>
-</div><div id="doel/01_doel" class="slide " data-transition="none"><div class="content " ref="doel/01_doel/4">
-<blockquote>
-<p><em>S</em> Single responsibility principle
-   A class should have only a one reason to change, i.e. have only single responsibility.</p>
-</blockquote></div>
-</div><div id="doel/01_doel" class="slide " data-transition="none"><div class="content " ref="doel/01_doel/5">
-<blockquote>
-<p><em>O</em> Open/closed principle
-   &#x201C;software entities &#x2026; should be open for extension, but closed for modification.&#x201D;</p>
-</blockquote></div>
-</div><div id="doel/01_doel" class="slide " data-transition="none"><div class="content " ref="doel/01_doel/6">
-<blockquote>
-<p><em>L</em> Liskov substitution principle
-   &#x201C;objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.&#x201D;</p>
-</blockquote></div>
-</div><div id="doel/01_doel" class="slide " data-transition="none"><div class="content " ref="doel/01_doel/7">
-<blockquote>
-<p><em>I</em> Interface segregation principle
-  &#x201C;many client-specific interfaces are better than one general-purpose interface.</p>
-</blockquote></div>
-</div><div id="doel/01_doel" class="slide " data-transition="none"><div class="content " ref="doel/01_doel/8">
-<blockquote>
-<p><em>D</em> Dependency inversion principle
-   one should &#x201C;Depend upon Abstractions. Do not depend upon concretions.&#x201D;</p>
-</blockquote></div>
-</div><div id="doel/01_doel" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="doel/01_doel/9">
+</div><div id="doel/01_doel" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="doel/01_doel/4">
 <h1>Kwaliteitsverbetering</h1>
 
 <ul>
 <li>TDD leidt je naar beter design</li>
 <li>Beter design geeft betere software</li>
-<li>Minder bugs</li>
+<li>Betere software heeft minder bugs</li>
 <li>Maar zeker niet <em>geen bugs</em>!</li>
 </ul></div>
-</div><div id="doel/01_doel" class="slide " data-transition="none"><div class="content " ref="doel/01_doel/10">
+</div><div id="doel/01_doel" class="slide " data-transition="none"><div class="content " ref="doel/01_doel/5">
 <h1>Vertrouwen</h1>
 
 <ul>
 <li>Vang regressies af</li>
-<li>Groen is Gaaaan.</li>
+<li>Groen is Gaan. Just :shipit:</li>
 </ul></div>
-</div><div id="doel/01_doel" class="slide " data-transition="none"><div class="content " ref="doel/01_doel/11">
+</div><div id="doel/01_doel" class="slide " data-transition="none"><div class="content " ref="doel/01_doel/6">
 <h1>Onderhoudbaarheid</h1>
 
 <ul>
 <li>Endless refactoring</li>
 <li>Beter design is betere onderhoudbaarheid</li>
-<li>Veel tell-tales</li>
+<li>Tests maken nieuwe problemen zichtbaar</li>
 </ul></div>
-</div><div id="wat/01_wat" class="slide " data-transition="none"><div class="content " ref="wat/01_wat/1">
+</div><div id="wat/01_wat" class="slide center" data-transition="none"><div class="content center" ref="wat/01_wat/1">
+<h1>Wat</h1>
+
 <p><img src="./file/wat/./wat.png" width="500" height="498" alt="WAT" title="wat"/></p></div>
 </div><div id="wat/01_wat" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="wat/01_wat/2">
+<h1>Terminologie</h1>
+
 <ul>
+<li>Integration</li>
+<li>Units</li>
+<li>TDD</li>
+<li>BDD</li>
 <li>The Three laws of TDD</li>
-<li>Terminologie</li>
 </ul></div>
-</div><div id="wat/01_wat" class="slide " data-transition="none"><div class="content " ref="wat/01_wat/3">
+</div><div id="wat/01_wat" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="wat/01_wat/3">
+<h1>Integration</h1>
+
+<ul>
+<li>"It must be a rooster"</li>
+<li>"It must have an eye"</li>
+<li>"It must be 30mm wide, 90mm deep and 80mm high"</li>
+</ul></div>
+</div><div id="wat/01_wat" class="slide center" data-transition="none"><div class="content center" ref="wat/01_wat/4">
+<p><img src="./file/wat/duplo.jpg" width="717" height="717" alt="integration"/></p></div>
+</div><div id="wat/01_wat" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="wat/01_wat/5">
+<h1>Integration</h1>
+
+<ul>
+<li>Test het gedrag van je site. Aan de buitenkant</li>
+<li>Test veranderingen aan de buitenkant bij interactie.</li>
+</ul></div>
+</div><div id="wat/01_wat" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="wat/01_wat/6">
+<h1>Units</h1>
+
+<ul>
+<li>"It must be green"</li>
+<li>"It must have four knobs"</li>
+<li>"It must have one rounded edge"</li>
+<li>"It must be 30mm wide, 45mm deep and 20mm high"</li>
+</ul></div>
+</div><div id="wat/01_wat" class="slide center" data-transition="none"><div class="content center" ref="wat/01_wat/7">
+<p><img src="./file/wat/duplo_unit_B.jpg" width="525" height="389" alt="unit"/></p></div>
+</div><div id="wat/01_wat" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="wat/01_wat/8">
+<h1>Units and Integration</h1>
+
+<ul>
+<li>Units kunnen veranderen</li>
+<li>Behaviour blijft hetzelfde</li>
+</ul></div>
+</div><div id="wat/01_wat" class="slide center" data-transition="none"><div class="content center" ref="wat/01_wat/9">
+<p><img src="./file/wat/duplo_integration_swap_units.jpg" width="408" height="335" alt="different unit"/></p></div>
+</div><div id="wat/01_wat" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="wat/01_wat/10">
+<h1>Voorbeelden</h1>
+
+<h2>Pseudocode</h2></div>
+</div><div id="wat/01_wat" class="slide code" data-transition="none"><div class="content code" ref="wat/01_wat/11">
+<h1>Integration</h1>
+
+<pre class="sh_php"><code>class PublishComment extends PHPUnit_Framework_TestCase {
+  // Test that a comment gets published immediately
+  public function CommentIsPublished() {
+    // Given: a story
+    $story = $this-&gt;create_a_story();
+
+    // When: we are on the story page
+    $page = $this-&gt;visit($story-&gt;url);
+
+    // And: we place a comment
+    $page-&gt;fill_in("comment_form", array("body" =&gt; "I am comment");
+    $page-&gt;click_button("Place Comment");
+
+    // Then we should see it on the page
+    $page = $this-&gt;visit($story-&gt;url);
+    $this-&gt;assertContains(
+      'I am comment', 
+      $page-&gt;find("#comments .body")-&gt;content()
+    );
+  }
+}</code></pre></div>
+</div><div id="wat/01_wat" class="slide code" data-transition="none"><div class="content code" ref="wat/01_wat/12">
+<h1>Unit</h1>
+
+<pre class="sh_php"><code>class CommentPublisher extends PHPUnit_Framework_TestCase {
+  // It forces the published state on a comment
+  public function forcesPublishdOnComment() {
+    $comment = wp_new_comment();
+    $this-&gt;assert_equal($comment-&gt;published, false);
+    new CommentPublisher($comment);
+    $this-&gt;assert_equal($comment-&gt;published, true);
+  }
+}</code></pre></div>
+</div><div id="wat/01_wat" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="wat/01_wat/13">
+<h1>Omarm verandering</h1>
+
+<ul>
+<li>Units kunnen herschreven worden.</li>
+<li>Maar aan de buitenkant blijft het hetzelfde werken. </li>
+<li>Dat weet je "zeker", als je integrationtest groen is.</li>
+<li>(Voor alles wat je met die integrationtests test)</li>
+</ul></div>
+</div><div id="wat/01_wat" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="wat/01_wat/14">
+<h1>TDD: Test Driven development</h1>
+
+<ul>
+<li>Schrijf eerst de tests</li>
+<li>En dan pas de code voor die test</li>
+</ul></div>
+</div><div id="wat/01_wat" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="wat/01_wat/15">
+<h1>BDD: Behaviour Driven development</h1>
+
+<ul>
+<li>Variatie op TDD</li>
+<li>Schrijf eerst de gewenste uitkomst</li>
+<li>Test eerst de integratie (het gedrag)</li>
+</ul></div>
+</div><div id="wat/01_wat" class="slide " data-transition="none"><div class="content " ref="wat/01_wat/16">
 <h1>Three Laws</h1>
 
 <blockquote>
 <p>You are not allowed to write any production code unless it is to make a failing unit test pass.</p>
 </blockquote></div>
-</div><div id="wat/01_wat" class="slide " data-transition="none"><div class="content " ref="wat/01_wat/4">
+</div><div id="wat/01_wat" class="slide " data-transition="none"><div class="content " ref="wat/01_wat/17">
 <h1>Three Laws</h1>
 
 <blockquote>
 <p>You are not allowed to write any more of a unit test than is sufficient to fail; and compilation failures are failures.</p>
 </blockquote></div>
-</div><div id="wat/01_wat" class="slide " data-transition="none"><div class="content " ref="wat/01_wat/5">
+</div><div id="wat/01_wat" class="slide " data-transition="none"><div class="content " ref="wat/01_wat/18">
 <h1>Three Laws</h1>
 
 <blockquote>
 <p>You are not allowed to write any more production code than is sufficient to pass the one failing unit test.</p>
 </blockquote></div>
-</div><div id="wat/01_wat" class="slide " data-transition="none"><div class="content " ref="wat/01_wat/6">
-<h1>Terminologie</h1>
-
-<h2>Behaviour Test</h2>
-
-<ul>
-<li>Test de buitenkant van je applicatie</li>
-<li>Ook wel Acceptance Test, Integration Test, Feature</li>
-</ul></div>
-</div><div id="wat/01_wat" class="slide " data-transition="none"><div class="content " ref="wat/01_wat/7">
-<h1>Behaviour Test</h1>
-
-<blockquote>
-<p>Its core idea is to replace confusing and developer-centric terminology (tests, suites, assertions etc) with ubiquitous language that all participating stakeholders (including non-technical staff, and, possibly, clients) can understand.</p>
-</blockquote></div>
-</div><div id="wat/01_wat" class="slide code" data-transition="none"><div class="content code" ref="wat/01_wat/8">
-<pre class="sh_cucumber"><code>Feature: Search
-
-  So that I can find campings
-  As a user
-  I want to search and filter campings
-
-  @javascript
-  Scenario: Search in title
-    Given 1 Campings
-    And a camping named "Bij Ons"
-    When I visit the map page
-    And I fill in search with "ons"
-    And I click "Search"
-    Then I should see only the camping "Bij Ons"</code></pre></div>
-</div><div id="wat/01_wat" class="slide " data-transition="none"><div class="content " ref="wat/01_wat/9">
-<h1>Terminologie</h1>
-
-<h2>Functional Test</h2>
-
-<ul>
-<li>Black Box testing van je controllers</li>
-<li>Uitgekleed</li>
-</ul></div>
-</div><div id="wat/01_wat" class="slide code" data-transition="none"><div class="content code" ref="wat/01_wat/10">
-<pre class="sh_ruby"><code>describe CampingsController do
-  describe "GET show" do
-    before do
-      @camping = FactoryGirl.create(:camping)
-      get :show, :id =&gt; @camping.id
-    end
-    it { should assign_to(:camping) }
-    it { should assign_to(:title).with(@camping.name) }
-  end
-end</code></pre></div>
-</div><div id="wat/01_wat" class="slide " data-transition="none"><div class="content " ref="wat/01_wat/11">
-<h1>Terminologie</h1>
-
-<h2>Unit Test</h2>
-
-<ul>
-<li>Black box testing van models en objecten</li>
-<li>Beschrijft alle models, en andere "Dingen"</li>
-</ul></div>
-</div><div id="wat/01_wat" class="slide code" data-transition="none"><div class="content code" ref="wat/01_wat/12">
-<pre class="sh_ruby"><code>describe "#website" do
-  it { should allow_mass_assignment_of(:website) }
-  it { should allow_value(nil).for(:website) }
-
-  it 'should ensure website has a length of at most 255' do
-    camping = Camping.new(:website =&gt; "x" * 256)
-    camping.valid?
-    camping.errors[:website].first.should match /is too long/
-  end
-  it 'should prepend http to urls without it' do
-    camping = Camping.new(:website =&gt; "example.com")
-    camping.valid?
-    camping.website.should eq "http://example.com"
-  end
-  %w{example.com http://example.com https://example.com}.each do |valid_value|
-    it { should allow_value(valid_value).for(:website) }
-  end
-end</code></pre></div>
 </div><div id="implementatie/01_implementatie" class="slide center" data-transition="none"><div class="content center" ref="implementatie/01_implementatie/1">
 <p><img src="./file/implementatie/goal.jpg" width="250" height="250" alt="goal"/></p></div>
-</div><div id="implementatie/01_implementatie" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="implementatie/01_implementatie/2">
-<ul>
-<li>Effort curve</li>
-<li>Feedback loop</li>
-</ul></div>
-</div><div id="implementatie/01_implementatie" class="slide center" data-transition="none"><div class="content center" ref="implementatie/01_implementatie/3">
+</div><div id="implementatie/01_implementatie" class="slide center" data-transition="none"><div class="content center" ref="implementatie/01_implementatie/2">
+<h1>Effort curve</h1>
+
 <p><img src="./file/implementatie/TDD_efficiency.png" width="575" height="429" alt="Efficiency"/></p></div>
-</div><div id="implementatie/01_implementatie" class="slide center" data-transition="none"><div class="content center" ref="implementatie/01_implementatie/4">
-<p><img src="./file/implementatie/BDD_cycle.png" width="934" height="956" alt="Cycle"/></p></div>
-</div><div id="implementatie/01_implementatie" class="slide " data-transition="none"><div class="content " ref="implementatie/01_implementatie/5">
+</div><div id="implementatie/01_implementatie" class="slide center" data-transition="none"><div class="content center" ref="implementatie/01_implementatie/3">
+<h1>BDD-cycle</h1>
+
+<p><img src="./file/implementatie/BDD_cycle.png" width="934" height="956" alt="BDD-cycle"/></p></div>
+</div><div id="demo/02_demo" class="slide " data-transition="none"><div class="content " ref="demo/02_demo/1">
 <h1>demo</h1></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/2">
+<p><img src="./file/demo/01_doel.png" width="1293" height="868" alt="01_doel.png"/></p></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/3">
+<p><img src="./file/demo/02_spec_as_documentation.png" width="1086" height="670" alt="02_spec_as_documentation.png"/></p></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/4">
+<p><img src="./file/demo/03_spec_as_documentation.png" width="1082" height="677" alt="03_spec_as_documentation.png"/></p></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/5">
+<p><img src="./file/demo/04_feature_wip.png" width="876" height="646" alt="04_feature_wip.png"/></p></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/6">
+<p><img src="./file/demo/05_pending.png" width="872" height="651" alt="05_pending.png"/></p></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/7">
+<p><img src="./file/demo/05_refactoring_target.png" width="1060" height="629" alt="05_refactoring_target.png"/></p></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/8">
+<p><img src="./file/demo/06_implement_step.png" width="876" height="646" alt="06_implement_step.png"/></p></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/9">
+<p><img src="./file/demo/07_failing.png" width="886" height="665" alt="07_failing.png"/></p></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/10">
+<p><img src="./file/demo/08_implement.png" width="1060" height="629" alt="08_implement.png"/></p></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/11">
+<p><img src="./file/demo/09_pass.png" width="886" height="665" alt="09_pass.png"/></p></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/12">
+<p><img src="./file/demo/0x_refactoring_done.png" width="1074" height="643" alt="0x_refactoring_done.png"/></p></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/13">
+<p><img src="./file/demo/10_refactoring_candidate.png" width="1060" height="629" alt="10_refactoring_candidate.png"/></p></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/14">
+<p><img src="./file/demo/11_unit_test.png" width="890" height="660" alt="11_unit_test.png"/></p></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/15">
+<p><img src="./file/demo/12_failing_with_error.png" width="886" height="665" alt="12_failing_with_error.png"/></p></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/16">
+<p><img src="./file/demo/13_implement_minimal.png" width="890" height="660" alt="13_implement_minimal.png"/></p></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/17">
+<p><img src="./file/demo/14_failing_with_assertion.png" width="886" height="665" alt="14_failing_with_assertion.png"/></p></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/18">
+<p><img src="./file/demo/15_implement_to_pass.png" width="890" height="660" alt="15_implement_to_pass.png"/></p></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/19">
+<p><img src="./file/demo/16_pass.png" width="886" height="665" alt="16_pass.png"/></p></div>
+</div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/20">
+<p><img src="./file/demo/17_result.png" width="890" height="660" alt="17_result.png"/></p></div>
+</div><div id="demo/02_demo" class="slide " data-transition="none"><div class="content " ref="demo/02_demo/21">
+<h1>demo with Firefox</h1></div>
+</div><div id="demo/02_demo" class="slide " data-transition="none"><div class="content " ref="demo/02_demo/22">
+<h1>demo headless</h1></div>
+</div><div id="outro/01_link" class="slide " data-transition="none"><div class="content " ref="outro/01_link">
+<p>http://berk.es/tddpres</p></div>
 </div></div>
 <div id="pauseScreen">
   PAUSED
