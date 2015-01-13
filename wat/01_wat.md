@@ -47,8 +47,10 @@
 # Voorbeelden
 ## Pseudocode
 
-!SLIDE code
+!SLIDE center
 # Integration
+
+!SLIDE code
     @@@ PHP
     class PublishComment extends PHPUnit_Framework_TestCase {
       // Test that a comment gets published immediately
@@ -60,7 +62,9 @@
         $page = $this->visit($story->url);
 
         // And: we place a comment
-        $page->fill_in("comment_form", array("body" => "I am comment");
+        $page->fill_in("comment_form",
+          array("body" => "I am comment")
+        );
         $page->click_button("Place Comment");
 
         // Then we should see it on the page
@@ -72,8 +76,10 @@
       }
     }
 
-!SLIDE code
+!SLIDE center
 # Unit
+
+!SLIDE code
     @@@ PHP
     class CommentPublisher extends PHPUnit_Framework_TestCase {
       // It forces the published state on a comment
