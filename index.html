@@ -99,7 +99,7 @@
 <div id="intro/01_titel" class="slide center" data-transition="none"><div class="content center" ref="intro/01_titel">
 <h1>Behaviour Driven Development</h1>
 
-<h2>Nijmegen Developer Meetup</h2></div>
+<h2>NijmegenPHP 2015-01-14</h2></div>
 </div><div id="intro/02_over" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="intro/02_over/1">
 <h1>Over</h1>
 
@@ -141,11 +141,9 @@
 <ul>
 <li>Beter design</li>
 <li>Kwaliteitsverbetering</li>
-<li>Vertrouwen en Regressie</li>
+<li>Vertrouwen</li>
 <li>Onderhoudbaarheid</li>
 <li>Regressie</li>
-<li>
-<strong>niet</strong> minder bugs</li>
 </ul></div>
 </div><div id="doel/01_doel" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="doel/01_doel/3">
 <h1>Beter design</h1>
@@ -233,9 +231,9 @@
 <h1>Voorbeelden</h1>
 
 <h2>Pseudocode</h2></div>
-</div><div id="wat/01_wat" class="slide code" data-transition="none"><div class="content code" ref="wat/01_wat/11">
-<h1>Integration</h1>
-
+</div><div id="wat/01_wat" class="slide center" data-transition="none"><div class="content center" ref="wat/01_wat/11">
+<h1>Integration</h1></div>
+</div><div id="wat/01_wat" class="slide code" data-transition="none"><div class="content code" ref="wat/01_wat/12">
 <pre class="sh_php"><code>class PublishComment extends PHPUnit_Framework_TestCase {
   // Test that a comment gets published immediately
   public function CommentIsPublished() {
@@ -246,7 +244,9 @@
     $page = $this-&gt;visit($story-&gt;url);
 
     // And: we place a comment
-    $page-&gt;fill_in("comment_form", array("body" =&gt; "I am comment");
+    $page-&gt;fill_in("comment_form",
+      array("body" =&gt; "I am comment")
+    );
     $page-&gt;click_button("Place Comment");
 
     // Then we should see it on the page
@@ -257,19 +257,65 @@
     );
   }
 }</code></pre></div>
-</div><div id="wat/01_wat" class="slide code" data-transition="none"><div class="content code" ref="wat/01_wat/12">
-<h1>Unit</h1>
+</div><div id="wat/01_wat" class="slide center" data-transition="none"><div class="content center" ref="wat/01_wat/13">
+<h1>Unit</h1></div>
+</div><div id="wat/01_wat" class="slide code" data-transition="none"><div class="content code" ref="wat/01_wat/14">
+<pre class="sh_php"><code>class CommentStateMachine extends PHPUnit_Framework_TestCase {
+  // It forces the published state on a comment-ish
+  public function publishForcesPublishedOnComment() {
+    $comment = $this-&gt;mock("Comment")
+      -&gt;allow("set_published");
 
-<pre class="sh_php"><code>class CommentPublisher extends PHPUnit_Framework_TestCase {
-  // It forces the published state on a comment
-  public function forcesPublishdOnComment() {
-    $comment = wp_new_comment();
-    $this-&gt;assert_equal($comment-&gt;published, false);
-    new CommentPublisher($comment);
-    $this-&gt;assert_equal($comment-&gt;published, true);
+    $comment-&gt;expects("set_published");
+
+    $subject = new CommentStateMachine($comment);
+    $subject-&gt;publish();
+  }
+  public function publishCannotPublishPublishedComment() {}
+  public function publishReturnsTrueOnSuccess() {}
+}</code></pre></div>
+</div><div id="wat/01_wat" class="slide center" data-transition="none"><div class="content center" ref="wat/01_wat/15">
+<h1>Other Units</h1></div>
+</div><div id="wat/01_wat" class="slide code" data-transition="none"><div class="content code" ref="wat/01_wat/16">
+<pre class="sh_php"><code>class Comment extends PHPUnit_Framework_TestCase {
+  function set_published_sets_published() { }
+}
+
+class CommentsController extends PHPUnit_Framework {
+  # POST stories/1/comments
+  function comment_is_created_with_params() { }
+  function state_machine_is_created_with_comment() { }
+  function calls_publish_on_state_machine() { }
+  function redirects_to_comments_with_message() { }
+}
+
+class StoriesController extends PHPUnit_Framework {
+  # GET stories/1
+  #...
+  function published_comment_is_included_in_comments() { }
+  function unpublished_comment_is_omitted_from_comments() { }
+  function passes_comments_to_comment_list_template() { }
+}</code></pre></div>
+</div><div id="wat/01_wat" class="slide center" data-transition="none"><div class="content center" ref="wat/01_wat/17">
+<h1>Implementation Example</h1></div>
+</div><div id="wat/01_wat" class="slide code" data-transition="none"><div class="content code" ref="wat/01_wat/18">
+<pre class="sh_php"><code>class CommentsController extends Controller {
+  function action_create() {
+    $comment = new Comment($this-&gt;request_params());
+    $state_machine = new CommentStateMachine($comment);
+    $state_machine-&gt;publish();
+    $this-&gt;redirect_to('comments', "Comment Created!");
   }
 }</code></pre></div>
-</div><div id="wat/01_wat" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="wat/01_wat/13">
+</div><div id="wat/01_wat" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="wat/01_wat/19">
+<h1>Behandel units als ge&#xEF;soleerde dingen</h1>
+
+<ul>
+<li>Voorkomt dat het teveel doet (S in SOLID)</li>
+<li>Voorkeur voor simpelste oplossing (I in SOLID)</li>
+<li>Vereist onafhankelijkheid/loose coupling (D in SOLID)</li>
+</ul></div>
+</div><div id="wat/01_wat" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="wat/01_wat/20">
 <h1>Omarm verandering</h1>
 
 <ul>
@@ -278,34 +324,38 @@
 <li>Dat weet je "zeker", als je integrationtest groen is.</li>
 <li>(Voor alles wat je met die integrationtests test)</li>
 </ul></div>
-</div><div id="wat/01_wat" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="wat/01_wat/14">
+</div><div id="wat/01_wat" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="wat/01_wat/21">
+<h1>BDD: Behaviour Driven development</h1>
+
+<ul>
+<li>Schrijf gewenste uitkomst op gebruikersniveau.</li>
+<li>Schrijf tests middels gebruikersinteractie.</li>
+<li>Schrijf minimale code om tests te passen. <code>subroutine</code>
+</li>
+<li>GOTO 10</li>
+</ul></div>
+</div><div id="wat/01_wat" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="wat/01_wat/22">
 <h1>TDD: Test Driven development</h1>
 
 <ul>
 <li>Schrijf eerst de tests</li>
 <li>En dan pas de code voor die test</li>
+<li>En dan refactoren</li>
+<li>GOTO 10</li>
 </ul></div>
-</div><div id="wat/01_wat" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="wat/01_wat/15">
-<h1>BDD: Behaviour Driven development</h1>
-
-<ul>
-<li>Variatie op TDD</li>
-<li>Schrijf eerst de gewenste uitkomst</li>
-<li>Test eerst de integratie (het gedrag)</li>
-</ul></div>
-</div><div id="wat/01_wat" class="slide " data-transition="none"><div class="content " ref="wat/01_wat/16">
+</div><div id="wat/01_wat" class="slide " data-transition="none"><div class="content " ref="wat/01_wat/23">
 <h1>Three Laws</h1>
 
 <blockquote>
 <p>You are not allowed to write any production code unless it is to make a failing unit test pass.</p>
 </blockquote></div>
-</div><div id="wat/01_wat" class="slide " data-transition="none"><div class="content " ref="wat/01_wat/17">
+</div><div id="wat/01_wat" class="slide " data-transition="none"><div class="content " ref="wat/01_wat/24">
 <h1>Three Laws</h1>
 
 <blockquote>
 <p>You are not allowed to write any more of a unit test than is sufficient to fail; and compilation failures are failures.</p>
 </blockquote></div>
-</div><div id="wat/01_wat" class="slide " data-transition="none"><div class="content " ref="wat/01_wat/18">
+</div><div id="wat/01_wat" class="slide " data-transition="none"><div class="content " ref="wat/01_wat/25">
 <h1>Three Laws</h1>
 
 <blockquote>
@@ -317,10 +367,88 @@
 <h1>Effort curve</h1>
 
 <p><img src="./file/implementatie/TDD_efficiency.png" width="575" height="429" alt="Efficiency"/></p></div>
-</div><div id="implementatie/01_implementatie" class="slide center" data-transition="none"><div class="content center" ref="implementatie/01_implementatie/3">
-<h1>BDD-cycle</h1>
+</div><div id="implementatie/01_implementatie" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="implementatie/01_implementatie/3">
+<h1>LinkDump</h1>
 
-<p><img src="./file/implementatie/BDD_cycle.png" width="934" height="956" alt="BDD-cycle"/></p></div>
+<ul>
+<li>Behat <a href="http://behat.org">behat.org</a> Feature Tests</li>
+<li>PHPUnit <a href="http://phpunit.de">phpunit.de</a> Defacto Standaard Unit Testing</li>
+<li>AspectMock <a href="https://github.com/Codeception/AspectMock">Codeception/AspectMock</a> Mocking Library</li>
+<li>Codeception <a href="http://codeception.com/">codeception.com</a> Voor als je van Overkill houd.</li>
+</ul></div>
+</div><div id="implementatie/01_implementatie" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="implementatie/01_implementatie/4">
+<h1>Opmerkingen</h1>
+
+<ul>
+<li>Je hebt geen testframework nodig om te testen. Tests zijn ook gewoon
+code.</li>
+<li>Je hebt geen twee testframeworks nodig om te testen. Integratietests
+zijn ook gewoon code (maar wel met veel curl gegoochel).</li>
+</ul></div>
+</div><div id="implementatie/01_implementatie" class="slide code" data-transition="none"><div class="content code" ref="implementatie/01_implementatie/5">
+<pre class="sh_php"><code>require "state_machines/comment_state_machine.php"
+
+class CommentMock {
+  var $message_memo = array("set_published" =&gt; "not called");
+
+  public function set_published() {
+    $message_memo["set_published"] = "called";
+  }
+}
+
+$comment = new CommentMock();
+$comment_state_machine = new CommentStateMachine($comment);
+$comment_state_machine-&gt;publish();
+if ($comment-&gt;message_memo["set_published"] != "called") {
+  throw new Exception('Expected set_published to be called!')
+}</code></pre></div>
+</div><div id="implementatie/01_implementatie" class="slide bullets incremental" data-transition="none"><div class="content bullets incremental" ref="implementatie/01_implementatie/6">
+<h1>Opmerkingen</h1>
+
+<ul>
+<li>Globals zijn klote. Ook in de implementatie. Schrijf Wrappers.</li>
+</ul><p>!slide code
+    @@@php
+    class myseoform extends phpunit<em>framework</em>testcase {
+      function submitcallssetoptionwith {
+        $wordpress = $this-&gt;mock(wordpress)
+          -&gt;expects("set<em>option")
+          -&gt;with("seo</em>meta_description", "needs moah seo");</p>
+
+<pre><code>    $subject = myseoform($mock_wordpress);
+    $subject-&gt;fields(array("meta_description", "needs more seo"));
+    $subject-&gt;submit();
+  }
+}
+</code></pre></div>
+</div><div id="implementatie/01_implementatie" class="slide code" data-transition="none"><div class="content code" ref="implementatie/01_implementatie/7">
+<pre class="sh_php"><code>class MySeoForm extends Form {
+  function initialize($wordpress) {
+    $this-&gt;wordpress = $wordpress;
+  }
+
+  function submit() {
+    foreach($fields as $name =&gt; $value) {
+      $wordpress-&gt;set_option(
+        $this-&gt;prefix_option($name),
+        $value);
+    }
+  }
+
+  private function prefix_option($option) {
+    "seo_" . $option;
+  }
+}</code></pre></div>
+</div><div id="implementatie/01_implementatie" class="slide code" data-transition="none"><div class="content code" ref="implementatie/01_implementatie/8">
+<pre class="sh_php"><code>class WordPress {
+  def set_option($name, $value) {
+    if(get_option($name)) {
+      update_option($name);
+    } else {
+      add_option($name, $value);
+    }
+  }
+}</code></pre></div>
 </div><div id="demo/02_demo" class="slide " data-transition="none"><div class="content " ref="demo/02_demo/1">
 <h1>demo</h1></div>
 </div><div id="demo/02_demo" class="slide center" data-transition="none"><div class="content center" ref="demo/02_demo/2">
