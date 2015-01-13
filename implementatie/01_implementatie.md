@@ -8,7 +8,7 @@
 !SLIDE bullets incremental
 # LinkDump
 * Behat [behat.org](http://behat.org) Feature Tests
-* 
+* PHPUnit [
 
 !SLIDE bullets incremental
 # Opmerkingen
@@ -37,3 +37,53 @@
     }
 
 
+!SLIDE bullets incremental
+# Opmerkingen
+* Globals zijn klote. Ook in de implementatie. Schrijf Wrappers.
+
+!slide code
+    @@@php
+    class myseoform extends phpunit_framework_testcase {
+      function submitcallssetoptionwith {
+        $wordpress = $this->mock(wordpress)
+          ->expects("set_option")
+          ->with("seo_meta_description", "needs moah seo");
+
+        $subject = myseoform($mock_wordpress);
+        $subject->fields(array("meta_description", "needs more seo"));
+        $subject->submit();
+      }
+    }
+
+!SLIDE code
+    @@@PHP
+    class MySeoForm extends Form {
+      function initialize($wordpress) {
+        $this->wordpress = $wordpress;
+      }
+
+      function submit() {
+        foreach($fields as $name => $value) {
+          $wordpress->set_option(
+            $this->prefix_option($name),
+            $value);
+        }
+      }
+
+      private function prefix_option($option) {
+        "seo_" . $option;
+      }
+    }
+
+!SLIDE code
+
+    @@@PHP
+    class WordPress {
+      def set_option($name, $value) {
+        if(get_option($name)) {
+          update_option($name);
+        } else {
+          add_option($name, $value);
+        }
+      }
+    }
