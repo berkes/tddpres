@@ -8,7 +8,9 @@
 !SLIDE bullets incremental
 # LinkDump
 * Behat [behat.org](http://behat.org) Feature Tests
-* PHPUnit [
+* PHPUnit [phpunit.de](http://phpunit.de) Defacto Standaard Unit Testing
+* AspectMock [Codeception/AspectMock](https://github.com/Codeception/AspectMock) Mocking Library
+* Codeception [codeception.com](http://codeception.com/) Voor als je van Overkill houd.
 
 !SLIDE bullets incremental
 # Opmerkingen
