@@ -5,10 +5,9 @@
 !SLIDE bullets incremental
 * Beter design
 * Kwaliteitsverbetering
-* Vertrouwen en Regressie
+* Vertrouwen
 * Onderhoudbaarheid
 * Regressie
-* **niet** minder bugs
 
 !SLIDE bullets incremental
 # Beter design

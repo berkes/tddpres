@@ -47,8 +47,10 @@
 # Voorbeelden
 ## Pseudocode
 
-!SLIDE code
+!SLIDE center
 # Integration
+
+!SLIDE code
     @@@ PHP
     class PublishComment extends PHPUnit_Framework_TestCase {
       // Test that a comment gets published immediately
@@ -60,7 +62,9 @@
         $page = $this->visit($story->url);
 
         // And: we place a comment
-        $page->fill_in("comment_form", array("body" => "I am comment");
+        $page->fill_in("comment_form",
+          array("body" => "I am comment")
+        );
         $page->click_button("Place Comment");
 
         // Then we should see it on the page
@@ -72,18 +76,71 @@
       }
     }
 
-!SLIDE code
+!SLIDE center
 # Unit
+
+!SLIDE code
     @@@ PHP
-    class CommentPublisher extends PHPUnit_Framework_TestCase {
-      // It forces the published state on a comment
-      public function forcesPublishdOnComment() {
-        $comment = wp_new_comment();
-        $this->assert_equal($comment->published, false);
-        new CommentPublisher($comment);
-        $this->assert_equal($comment->published, true);
+    class CommentStateMachine extends PHPUnit_Framework_TestCase {
+      // It forces the published state on a comment-ish
+      public function publishForcesPublishedOnComment() {
+        $comment = $this->mock("Comment")
+          ->allow("set_published");
+
+        $comment->expects("set_published");
+
+        $subject = new CommentStateMachine($comment);
+        $subject->publish();
+      }
+      public function publishCannotPublishPublishedComment() {}
+      public function publishReturnsTrueOnSuccess() {}
+    }
+
+!SLIDE center
+# Other Units
+
+!SLIDE code
+    @@@ PHP
+    class Comment extends PHPUnit_Framework_TestCase {
+      function set_published_sets_published() { }
+    }
+
+    class CommentsController extends PHPUnit_Framework {
+      # POST stories/1/comments
+      function comment_is_created_with_params() { }
+      function state_machine_is_created_with_comment() { }
+      function calls_publish_on_state_machine() { }
+      function redirects_to_comments_with_message() { }
+    }
+
+    class StoriesController extends PHPUnit_Framework {
+      # GET stories/1
+      #...
+      function published_comment_is_included_in_comments() { }
+      function unpublished_comment_is_omitted_from_comments() { }
+      function passes_comments_to_comment_list_template() { }
+    }
+
+
+!SLIDE center
+# Implementation Example
+
+!SLIDE code
+    @@@ PHP
+    class CommentsController extends Controller {
+      function action_create() {
+        $comment = new Comment($this->request_params());
+        $state_machine = new CommentStateMachine($comment);
+        $state_machine->publish();
+        $this->redirect_to('comments', "Comment Created!");
       }
     }
+
+!SLIDE bullets incremental
+# Behandel units als geïsoleerde dingen
+* Voorkomt dat het teveel doet (S in SOLID)
+* Voorkeur voor simpelste oplossing (I in SOLID)
+* Vereist onafhankelijkheid/loose coupling (D in SOLID)
 
 !SLIDE bullets incremental
 # Omarm verandering
@@ -93,15 +150,18 @@
 * (Voor alles wat je met die integrationtests test)
 
 !SLIDE bullets incremental
+# BDD: Behaviour Driven development
+* Schrijf gewenste uitkomst op gebruikersniveau.
+* Schrijf tests middels gebruikersinteractie.
+* Schrijf minimale code om tests te passen. `subroutine`
+* GOTO 10
+
+!SLIDE bullets incremental
 # TDD: Test Driven development
 * Schrijf eerst de tests
 * En dan pas de code voor die test
-
-!SLIDE bullets incremental
-# BDD: Behaviour Driven development
-* Variatie op TDD
-* Schrijf eerst de gewenste uitkomst
-* Test eerst de integratie (het gedrag)
+* En dan refactoren
+* GOTO 10
 
 !SLIDE
 # Three Laws
