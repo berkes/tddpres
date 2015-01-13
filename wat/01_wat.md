@@ -136,7 +136,11 @@
       }
     }
 
-
+!SLIDE bullets incremental
+# Behandel units als geïsoleerde dingen
+* Voorkomt dat het teveel doet (S in SOLID)
+* Voorkeur voor simpelste oplossing (I in SOLID)
+* Vereist onafhankelijkheid/loose coupling (D in SOLID)
 
 !SLIDE bullets incremental
 # Omarm verandering
@@ -146,15 +150,18 @@
 * (Voor alles wat je met die integrationtests test)
 
 !SLIDE bullets incremental
+# BDD: Behaviour Driven development
+* Schrijf gewenste uitkomst op gebruikersniveau.
+* Schrijf tests middels gebruikersinteractie.
+* Schrijf minimale code om tests te passen. `subroutine`
+* GOTO 10
+
+!SLIDE bullets incremental
 # TDD: Test Driven development
 * Schrijf eerst de tests
 * En dan pas de code voor die test
-
-!SLIDE bullets incremental
-# BDD: Behaviour Driven development
-* Variatie op TDD
-* Schrijf eerst de gewenste uitkomst
-* Test eerst de integratie (het gedrag)
+* En dan refactoren
+* GOTO 10
 
 !SLIDE
 # Three Laws
